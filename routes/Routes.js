@@ -7,6 +7,12 @@ const bcrypt = require("bcryptjs");
 const jsonwebtoken = require('jsonwebtoken');
 const authMW = require('../config/middelware/authMiddleware');
 
+// testing route
+
+router.get('/', (req, res) => {
+    res.send('its alive!')
+})
+
 // authentication routes:
 
 router.post("/register", auth.register);
