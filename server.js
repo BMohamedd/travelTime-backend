@@ -10,7 +10,7 @@ app.use(express.json({limit:'2mb'}));
 app.use(express.urlencoded({ extended: true, limit: "2mb"}));
 app.use(cors())
 //routes
-app.use(require('./routes/routes'));
+app.use(require("./routes/Routes"));
 
 
 const port = process.env.PORT || 5000;
