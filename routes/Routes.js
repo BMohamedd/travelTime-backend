@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../controllers/authentication');
 const post = require('../controllers/post')
+const browse = require('../controllers/browseControllers');
 const userinfo = require('../controllers/personalInfoControllers')
 const bcrypt = require("bcryptjs");
 const jsonwebtoken = require('jsonwebtoken');
@@ -38,7 +39,7 @@ router.put("/edit-post", authMW, post.editpost);
 router.delete("/delete-post/:id", authMW, post.deletePost);
 
 // add a like to an existing post
-router.get("/like/:id", authMW, post.addLike);
+router.get("/like/:id/:userId", authMW, post.addLike);
 
 // get postes for profile page
 
@@ -51,6 +52,14 @@ router.post('/edit-my-personal-information', authMW, userinfo.editinfo)
 // get personal information 
 
 router.get('/get-my-personal-info', authMW, userinfo.getInfo)
+
+// get random postes to brows
+
+router.get('/request-postes', authMW, browse.getRandom);
+
+// get more random postes
+
+router.post('/request-postes', authMW, browse.getMoreRandom);
 
 
 module.exports = router

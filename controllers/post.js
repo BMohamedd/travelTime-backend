@@ -40,9 +40,10 @@ module.exports.deletePost = (req, res) => {
 module.exports.addLike = (req, res) => {
 
     const postToLike = req.params.id;
+    const userId = req.params.userId;
     if(!postToLike) return res.status(400).json("please retry.")
 
-    User.findById(req.user.id, (err, user) => {
+    User.findById(userId === "123"? req.user.id: userId, (err, user) => {
         if(err) return res.status(500).json("my bad, please try this again!")
 
         const postToEdit = user.posts.id(req.params.id)
